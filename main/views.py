@@ -1,13 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CreatePost
 from register.models import CustomUser
 
 # Create your views here.
 def home(response):
-    if not CustomUser.objects.filter(id=id).exists():
-        print("Invalid user ID:", id)
-
     return render(response, 'main/home.html', {})
 
 def create(response):
@@ -16,8 +14,18 @@ def create(response):
         if form.is_valid():
             h = form.cleaned_data['headline']
             t = form.cleaned_data['text']
-            p = Post.objects.create(headline = h, text = t)
+            p = Post(headline = h, text = t, author = response.user)
             p.save()
+            print(p.author)
     else:
         form = CreatePost()
     return render(response, 'main/create.html', {"form": form})
+
+def post(response, user, id):
+    user = response.user
+    post = Post.objects.get(id = id)
+    context = {
+        'post': post,
+        'user': user
+    }
+    return render(response, 'main/post.html', context)
