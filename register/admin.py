@@ -5,5 +5,5 @@ from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 @admin.register(CustomUser)
 class CustomUserManager(UserAdmin):
-    list_display = ['username', 'email', 'followers', 'following']
+    list_display = ['username', 'email', 'followers', 'following', 'is_staff']
     search_fields = ['username']

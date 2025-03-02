@@ -1,0 +1,13 @@
+Rayquaza will have users that can make posts for other users to see, each post will have a headline, text, number of likes and comments. Every author will also have a number of followers and of following.
+
+Post:
+1. author
+2. text
+3. headline
+4. likes
+5. comments
+
+Comment:
+1. author
+2. text
+3. likes

@@ -1,7 +1,8 @@
 from django import forms
 from .models import CustomUser
+from django.contrib.auth import login, authenticate
 
-class CreateNewUser(forms.Form):
-    model = CustomUser
-    username = forms.CharField(max_length=200)
-    fields = ['username']
+class CreateNewUser(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'password']
