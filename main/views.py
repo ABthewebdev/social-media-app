@@ -21,11 +21,11 @@ def create(response):
         form = CreatePost()
     return render(response, 'main/create.html', {"form": form})
 
-def post(response, user, id):
-    user = response.user
-    post = Post.objects.get(id = id)
+def post(response, author, id):
+    author = CustomUser.objects.get(username = author)
+    post = author.post_set.get(id = id)
     context = {
-        'post': post,
-        'user': user
+        "post": post,
+        "author": author
     }
     return render(response, 'main/post.html', context)
