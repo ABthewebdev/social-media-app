@@ -11,3 +11,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.headline
+
+class Follower(models.Model):
+    follower = models.ForeignKey(CustomUser, related_name="following_relations", on_delete=models.CASCADE)
+    followed = models.ForeignKey(CustomUser, related_name="follower_relations", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('follower', 'followed')
+
+    def __str__(self):
+        return f"{self.follower} follows {self.followed}"
