@@ -9,11 +9,26 @@
             <h1>{{profile.username}}</h1>
             <form method="post">
                 {% csrf_token %}
-                <button class="follow-button">Follow</button>
+                <button name="follow-button" class="follow-button">Follow</button>
             </form>
         {% endif %}
     </div>
     <p class="followers">Followers: {{profile.followers}}</p>
     <p>following: {{profile.following}}</p>
 </section>
+<script>
+document.querySelector("button").addEventListener("click", function() {
+    fetch("{% url 'toggle_follow' profile.username %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}"
+        }
+    }).then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        location.reload();  // Refresh to update follow status
+    });
+});
+</script>
+    
 {% endblock content %}
