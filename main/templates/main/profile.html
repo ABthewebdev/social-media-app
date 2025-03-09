@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<section>
+    <div>
+        {% if profile.username == user.username %}
+            <h1>Your profile</h1>
+        {% else %}
+            <h1>{{profile.username}}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <button class="follow-button">Follow</button>
+            </form>
+        {% endif %}
+    </div>
+    <p class="followers">Followers: {{profile.followers}}</p>
+    <p>following: {{profile.following}}</p>
+</section>
+{% endblock content %}

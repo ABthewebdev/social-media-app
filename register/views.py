@@ -3,9 +3,9 @@ from django.contrib.auth import login, authenticate
 from .forms import CreateNewUser
 from .models import CustomUser
 
-def register(response):
-    if response.method == "POST":
-        form = CreateNewUser(response.POST)
+def register(request):
+    if request.method == "POST":
+        form = CreateNewUser(request.POST)
         if form.is_valid():
             u = form.cleaned_data['username']
             p = form.cleaned_data['password']
@@ -14,4 +14,4 @@ def register(response):
     else:
         form = CreateNewUser()
 
-    return render(response, 'register/register.html', {"form":form})
+    return render(request, 'register/register.html', {"form":form})

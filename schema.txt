@@ -1,4 +1,4 @@
-Rayquaza will have users that can make posts for other users to see, each post will have a headline, text, number of likes and comments. Every author will also have a number of followers and of following.
+Rayquaza will have users that can make posts for other users to see, each post will have a headline, text, number of likes and comments. Every author will also have a number of followers and of following. There will be a separate table for specifying true or false if a person is following someone else.
 
 Post:
 1. author

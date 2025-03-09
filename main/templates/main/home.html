@@ -1,6 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<h1>Hello {{user.username}}</h1>
+<a href="/{{ user.username }}">View my profile</a>
 <a href="/create">Create a post</a>
-<a href="/root/2">View</a>
+<a href="/root/2">View post</a>
+<a href="/root">View root profile</a>
 {% endblock content %}
