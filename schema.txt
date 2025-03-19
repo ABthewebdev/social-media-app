@@ -1,13 +1,20 @@
 Rayquaza will have users that can make posts for other users to see, each post will have a headline, text, number of likes and comments. Every author will also have a number of followers and of following. There will be a separate table for specifying true or false if a person is following someone else.
 
+Profile:
+1. User OneToOneField
+2. followers ManyToManyField
+4. profile picture imageUrl
+5. bio textfield
+
 Post:
-1. author
-2. text
-3. headline
-4. likes
-5. comments
+1. author foreign key User
+2. text textfield
+3. headline charfield
+4. likes ManyToManyField
+5. comments ManyToManyField
 
 Comment:
-1. author
-2. text
-3. likes
+1. author foreign key User
+2. text textfield
+3. likes ManyToManyField
+4. post foreign key Post
