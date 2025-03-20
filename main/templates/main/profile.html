@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div>
+{% if author.username == user.username %}
+    <h2>My profile</h2>
+    <a href="/create">Create post</a>
+{% else %}
+    <h2>{{author.username}}'s Profile</h2>
+{% endif %}
+    <p>{{profile.get_followers_count}} followers</p>
+</div>
+<section>
+    {% for post in profile.user.post_set.all %}
+        <a href="/{{author.username}}/{{post.id}}">
+            <div>
+                <p>{{post.title}}</p>
+                <p>{{post.text}}</p>
+            </div>
+        </a>
+    {% endfor %}
+</section>
+{% endblock content %}

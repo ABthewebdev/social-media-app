@@ -1,5 +1,13 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>Hello</h1>
+<h2>My profile</h2>
+<div>
+    {% for author in users %}
+        <a href="/profile/{{author.username}}">
+            {{author.username}}
+        </a>
+    {% endfor %}
+</div>
+
 {% endblock content %}

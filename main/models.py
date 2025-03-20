@@ -27,7 +27,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField()
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
-    imageSrc = models.CharField(max_length=255, blank=True, default=None)
+    imageSrc = models.ImageField(upload_to='posts', default=None, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def get_author(self):

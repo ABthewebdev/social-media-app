@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div>
+    <p>{{post.author}} posted</p>
+    <p>{{post.title}}</p>
+    <p>{{post.text}}</p>
+    <p>{{post.get_likes}} likes</p>
+</div>
+<section>
+    <h2>Comments</h2>
+</section>
+{% endblock content %}
