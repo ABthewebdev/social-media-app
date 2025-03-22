@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.none {
+  display: none;
+}
+.border-black {
+  border: 1px solid black;
+}
+
+/* Flexbox */
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-start {
+  justify-items: flex-start;
+}
+
+.align-content-center {
+  align-content: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+h2 {
+  text-wrap: initial;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+/* Width */
+
+.width-full {
+  width: 100%;
+}
+
+.weight-vw {
+  width: 100vw;
+}
+/* Height */
+
+.height-vh {
+  height: 100vh;
+}
+
+.height-1000 {
+  margin-top: 4em;
+}
+
+/* Margin */
+.mt-20 {
+  margin-top: 4em;
+}
+
+/* Components */
+/* Main */
+
+#main {
+  margin-top: 20px;
+}
+
+/* Sidebar */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: gray;
+  color: white;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  gap: 1em;
+}
+
+.profile-li {
+  margin-bottom: 2em;
+}
+
+/* Follow Button */
+
+.toggle-btn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-btn:hover {
+  background-color: #555;
+}
+
+.follow-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.follow-button:not(.following) {
+  background-color: #3897f0;
+  color: white;
+  border: 1px solid #3897f0;
+}
+
+.follow-button.following {
+  background-color: white;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+}
+
+.follow-button:hover:not(.following) {
+  background-color: #1877f2;
+}
+
+.follow-button.following:hover {
+  background-color: #ffeded;
+  color: #ed4956;
+  border-color: #ed4956;
+}
+
+/* Messages */
+#my_messages {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #1877f2;
+}
+
+/* Search Form */
+#search::after {
+  background-image: url("/static/admin/img/search.svg");
+}

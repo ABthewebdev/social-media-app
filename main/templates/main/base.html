@@ -1,31 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            background-color: black;
-        }
-        h1, h2, p, span, a, li, h3{
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body> 
     {% if user.is_authenticated %}
-        <a href="/">Home</a>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
+    <header class="header">
+        <!-- <img class="open-sidebar" src="{% static 'img/icons8-menu.svg' %}" alt="menu" height="40px" width="40px" /> -->
+        <form>
+            <input type="search" name="search" id="search" placeholder="Search" />
         </form>
-        {% block content %}{% endblock content %}
+        <a href="/messages"><img src="{% static 'img/messenger.svg' %}" alt="messages" /></a>
+    </header>
+    <div class="sidebar">
+        <ul>
+            <li class="profile-li">
+                <a href="/profile/{{user.username}}">{{user.username}}'s Profile</a>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/settings">Settings</a></li>
+        </ul>
+        <img class="close-sidebar" src="{% static 'img/icon-close.svg' %}" alt="exit" height="40px" width="40px" />
+    </div>
+    {% block content %}{% endblock content %}
+    <footer>
+        <ul>
+            <li><a href="/"><img src="/static/img/home.svg" alt="messages" /></a></li>
+            <li><a href="/settings"></a></li>
+
+        </ul>
+    </footer>
     {% else %}
         <div>
             <a href="/login">Login</a>
             <a href="/register">Register</a>
         </div>
     {% endif %}
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

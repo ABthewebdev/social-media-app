@@ -7,8 +7,22 @@
     <a href="/create">Create post</a>
 {% else %}
     <h2>{{author.username}}'s Profile</h2>
+    <button 
+        id="follow-btn" 
+        class="follow-button {% if is_following %}following{% endif %}"
+        data-profile-id="{{ profile.id }}"
+        data-csrf="{{ csrf_token }}"
+    >
+        {% if is_following %}
+            Unfollow
+        {% else %}
+            Follow
+        {% endif %}
+    </button>
+    <a href="/messages/{{author.username}}"><img src="/static/img/messenger.svg" alt="messages" /></a>
 {% endif %}
-    <p>{{profile.get_followers_count}} followers</p>
+    <p id="followers-count">{{profile.get_followers_count}} followers</p>
+    <p>{{profile.get_following_count}} following</p>
 </div>
 <section>
     {% for post in profile.user.post_set.all %}

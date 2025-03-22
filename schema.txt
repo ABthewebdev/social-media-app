@@ -18,3 +18,8 @@ Comment:
 2. text textfield
 3. likes ManyToManyField
 4. post foreign key Post
+
+Message:
+1. Receiver ManytoOne User
+2. Sender ManytoOne User
+3. Message textfield

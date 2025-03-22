@@ -44,3 +44,12 @@ class Comment(models.Model):
 
     def get_likes(self):
         return self.likes.count()
+    
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent')
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received')
+    text = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return f"Message from {self.sender} to {self.receiver} at {self.timestamp}"
