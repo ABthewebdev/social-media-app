@@ -1,18 +1,22 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div>
-    <h1>Feed</h1>
-    <main>
-        {% for post in posts %}
-        <div><img src="/media/profile_pics/{{post.author.profile.picture}}" width="50px" height="50px" />{{post.author.username}}</div>
+<h1>Feed</h1>
+<div class="home_feed">
+    {% for post in posts %}
+    <article>
+        <div class="profile_picture_div">
+            <img src="/media/profile_pics/{{post.author.profile.picture}}" alt="profile picture" width="50px" height="50px"/> 
+            {{post.author.username}}
+        </div>
         <div>
             <h3>{{post.title}}</h3>
             <p>{{post.text}}</p>
             <p>{{post.get_likes}} likes</p>
         </div>
-        {% endfor %}
-    </main>
+    </article>
+    {% endfor %}
+</div>
 <!--     <div class="people_to_follow">
         <h4>People to follow</h4>
         <ul>
@@ -27,5 +31,4 @@
             {% endfor %}
         </ul>
     </div> -->
-</div>
 {% endblock content %}

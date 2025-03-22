@@ -1,39 +1,25 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{% if user.username == user2.username %}
 <div>
-    <h1>You can't talk to yourself loser</h1>
-</div>
-{% elif user2 in users %}
-<div class="all_messages">
-    <div class="profile_picture_div"><img src="/media/profile_pics/{{user2.profile.picture}}" alt="profile picture" width="50px" height="50px"/> {{user2.username}}</div>
-    {% for message in all_messages %}
+    {% for message in latest_messages %}
     {% if message.sender == user %}
-    <div class="my_messages">
-        <h3>{{message.text}}</h3>
-        <p>{{message.timestamp}}</p>
+    <section>
+        <a href="/messages/{{message.receiver.username}}" class="flex">
+            <img class="mt-8" src="/media/profile_pics/{{message.receiver.profile.picture}}" width="50px" height="50px" />
+            <span class="mt-20">You texted {{message.receiver.username}}</span>
+        </a>
         <hr>
-    </div>
-    {% elif message.sender == user2 %}
-    <div class="their_messages">
-        <h3>{{message.text}}</h3>
-        <p>{{message.timestamp}}</p>
+    </section>
+    {% elif message.receiver == user %}
+    <section>
+        <a href="/messages/{{message.sender.username}}" class="flex">
+            <img class="mt-8" src="/media/profile_pics/{{message.sender.profile.picture}}" width="50px" height="50px" />
+            <span class="mt-20">{{message.sender}} texted you</span>
+        </a>
         <hr>
-    </div>
+    </section>
     {% endif %}
     {% endfor %}
 </div>
-<div class="messages_footer">
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Send</button>
-    </form>
-</div>
-{% else %}
-<div>
-    <p>User doesn't exist</p>
-</div>
-{% endif %}
 {% endblock content %}

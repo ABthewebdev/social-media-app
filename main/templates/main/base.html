@@ -14,7 +14,6 @@
         <form>
             <input type="search" name="search" id="search" placeholder="Search" />
         </form>
-        <a href="/messages"><img src="{% static 'img/messenger.svg' %}" alt="messages" /></a>
     </header>
     <div class="sidebar">
         <ul>
@@ -30,12 +29,14 @@
         </ul>
         <img class="close-sidebar" src="{% static 'img/icon-close.svg' %}" alt="exit" height="40px" width="40px" />
     </div>
-    {% block content %}{% endblock content %}
-    <footer>
-        <ul>
-            <li><a href="/"><img src="/static/img/home.svg" alt="messages" /></a></li>
-            <li><a href="/settings"></a></li>
-
+    <main id="main">
+        {% block content %}{% endblock content %}
+    </main>
+    <footer class="base_footer">
+        <ul class="flex justify-evenly">
+            <li><a href="/profile/{{user.username}}"><img src="/media/profile_pics/{{user.profile.picture}}" alt="profile" width="40px" height="40px" /></a></li>
+            <li><a href="/"><img src="/static/img/home.svg" alt="messages" width="40px" height="40px" /></a></li>
+            <li><a href="/messages"><img src="{% static 'img/messenger.svg' %}" alt="messages" width="40px" height="40px" /></a></li>
         </ul>
     </footer>
     {% else %}

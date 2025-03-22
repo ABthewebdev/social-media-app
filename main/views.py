@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from .models import Post, Profile, Message
 from django.contrib.auth.models import User
 from .forms import CreatePost, CreateMessage
+from django.db.models import Q, Max, OuterRef, Subquery
 
 # Create your views here.
 def home(request):
@@ -67,6 +68,41 @@ def follow_toggle(request, profile_id):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
+def messages(request):
+    conversations = Message.objects.filter(
+        Q(sender=request.user) | Q(receiver=request.user)
+    ).values(
+        'sender', 'receiver'
+    ).annotate(
+        latest_time=Max('timestamp')
+    )
+
+    # Create a list to store the message IDs
+    latest_message_ids = []
+
+    # For each conversation, get the latest message ID
+    for conv in conversations:
+        latest_msg = Message.objects.filter(
+            sender=conv['sender'],
+            receiver=conv['receiver'],
+            timestamp=conv['latest_time']
+        ).first()
+        if latest_msg:
+            latest_message_ids.append(latest_msg.id)
+
+    # Get the actual messages
+    latest_messages = Message.objects.filter(id__in=latest_message_ids).order_by('-timestamp')
+    received = Message.objects.filter(receiver = request.user)
+    sent = Message.objects.filter(sender = request.user)
+    all_messages = received.union(sent).order_by('timestamp')
+    context = {
+        "received": received,
+        "sent": sent,
+        "all_messages": all_messages,
+        "latest_messages": latest_messages
+    }
+    return render(request, 'main/message.html', context)
+
 
 def direct_messages(request, username):
     users = User.objects.all()
@@ -100,7 +136,7 @@ def direct_messages(request, username):
         "form": form
     }
     
-    return render(request, 'main/message.html', context)
+    return render(request, 'main/direct_message.html', context)
 
 def settings(request):
     return render(request, 'main/settings.html', {})

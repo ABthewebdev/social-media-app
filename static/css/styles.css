@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 8px 8px 0 8px;
+}
+
 .none {
   display: none;
 }
@@ -81,7 +85,7 @@ h1 {
 
 /* Margin */
 .mt-20 {
-  margin-top: 4em;
+  margin-top: 1.25em;
 }
 
 /* Components */
@@ -101,9 +105,15 @@ h1 {
 
 /* Main */
 
-main {
-  height: 90vh;
+#main {
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}
+
+article {
+  display: flex;
 }
 
 /* People to follow */
@@ -114,6 +124,11 @@ main {
 .people_to_follow ul {
   display: flex;
   flex-direction: column;
+}
+
+/* Home feed */
+.home_feed {
+  padding: 0 3em;
 }
 
 /* Sidebar */
@@ -150,6 +165,11 @@ main {
 .messages_footer form {
   display: flex;
   justify-content: flex-end;
+}
+
+/* Base footer */
+.base_footer {
+  padding-top: 1em;
 }
 
 /* Follow Button */
