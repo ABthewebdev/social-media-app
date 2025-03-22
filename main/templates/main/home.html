@@ -17,18 +17,18 @@
     </article>
     {% endfor %}
 </div>
-<!--     <div class="people_to_follow">
-        <h4>People to follow</h4>
-        <ul>
-            {% for author in users %}
-            <li>
-                <a href="/profile/{{author.username}}">
-                    <span>{{author.username}}</span>
-                    <br>
-                    <span>{{author.profile.get_followers_count}} followers</span>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div> -->
+<div class="people_to_follow">
+    <h4>People to follow</h4>
+    <ul>
+        {% for author in users %}
+        <li>
+            <a href="/profile/{{author.username}}">
+                <span>{{author.username}}</span>
+                <br>
+                <span>{{author.profile.get_followers_count}} followers</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}
